@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+</head>
+<body>
+
+    <style>
+        * {
+  font-family: "Poppins",'montserrat', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  background: #f1f1f1;
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col {
+  flex: 1;
+  height: 100vh;
+  position: relative;
+}
+
+.countdown-col {
+  background: url(https://i.pinimg.com/originals/27/4b/01/274b0146d9364205b9d8335515adf911.jpg) no-repeat center;
+  background-size: cover;
+}
+
+.time {
+  color: #fff;
+  text-transform: uppercase;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+}
+
+.middle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.rgba{
+    animation: animate 10s linear infinite;
+    background-color: #000000;
+background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
+    filter: hue-rotate(120deg);
+}
+
+
+
+.time span {
+  padding: 0 14px;
+  font-size: 10px;
+}
+
+.time span div {
+  font-size: 40px;
+}
+
+.newslatter {
+  width: 90%;
+}
+
+.newslatter h4 {
+  font-style: italic;
+  font-size: 12px;
+}
+
+.newslatter input, .newslatter button {
+  display: block;
+  margin: 12px auto;
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  padding: 14px 20px;
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+.newslatter-button {
+  background: linear-gradient(125deg, #3498db, #4689cc);
+  color: #fff;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.newslatter-button:hover {
+  background: rgb(255, 255, 255);
+  box-shadow: 2px 8px 40px 2px #0ff;
+    color: #000000;
+}
+newslatter input:focus{
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}
+
+
+@media screen and (max-width: 900px) {
+  .col {
+    flex: 100%;
+  }
+}
+    </style>
+    
+    <div class="page">
+        <div class="countdown-col col">
+          <div class="time middle">
+            <span><div id="days"></div> Days</span>
+            <span><div id="hours"></div> Hours</span>
+            <span><div id="minutes"></div> Minutes</span>
+            <span><div id="seconds"></div> Seconds</span>
+          </div>
+        </div>
+        <div class="newsletter-col col rgba">
+          <div class="newslatter middle">
+            <h2>We Will Coming Soon</h2>
+            <h4>Subscribe to get notification when we start</h4>
+            <form>
+              <input type="text" placeholder="Enter Your Email"/>
+              <button type="button" class="newslatter-button">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+      <script>
+          let comingDate = new Date('Feb 8, 2022 13:12:00')
+
+let d = document.getElementById('days')
+let h = document.getElementById('hours')
+let m = document.getElementById('minutes')
+let s = document.getElementById('seconds')
+
+let x = setInterval(function() {
+  let now = new Date()
+  let selisih = comingDate.getTime() - now.getTime()
+
+  let days    = Math.floor(1)
+  let hours   = Math.floor(selisih % (1000 * 60 * 60 * 24) / (1000 * 60 * 60))
+  let minutes = Math.floor(selisih % (1000 * 60 * 60) / (1000 * 60))
+  let seconds = Math.floor(selisih % (1000 * 60) / 1000)
+
+  d.innerHTML = getTrueNumber(days)
+  h.innerHTML = getTrueNumber(hours)
+  m.innerHTML = getTrueNumber(minutes)
+  s.innerHTML = getTrueNumber(seconds)
+
+  if (selisih < 0) {
+    clearInterval(x)
+    d.innerHTML = '00'
+    h.innerHTML = '00'
+    m.innerHTML = '00'
+    s.innerHTML = '00'
+  }
+}, 1000)
+
+function getTrueNumber(x) {
+  if (x < 10) return '0' + x
+  else return x
+}
+      </script>
+</body>
+</html>
